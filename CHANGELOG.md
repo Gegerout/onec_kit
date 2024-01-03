@@ -1,3 +1,3 @@
-## 0.0.1
+## 0.0.2
 
-Creation of Home tabs
+Creation of Home tabs and bug fixes
