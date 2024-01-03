@@ -49,6 +49,57 @@ class CodeGenerator {
   static Widget generateObjectTab(ObjectTabConfig config) {
     return config.screen;
   }
+
+  static Widget generateObjectScreen(ObjectScreenConfig config) {
+    return Scaffold(
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                TextField(
+                  decoration: InputDecoration(labelText: 'Event Type Name'),
+                ),
+                ElevatedButton(
+                  onPressed: config.addFunc,
+                  child: Text('Add Event Type'),
+                ),
+              ],
+            ),
+          ),
+          FutureBuilder(
+            future: config.loadFunc,
+            builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return CircularProgressIndicator();
+              } else if (snapshot.hasError) {
+                return Text('Error: ${snapshot.error}');
+              } else {
+                List<dynamic> eventTypes = snapshot.data ?? [];
+                return Expanded(
+                  child: ListView.builder(
+                    itemCount: eventTypes.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        title: Text(eventTypes[index].name),
+                        trailing: IconButton(
+                          icon: Icon(Icons.delete),
+                          onPressed: () async {
+                            config.deleteFunc();
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                );
+              }
+            },
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 class TestTickerProviderStateMixin implements TickerProvider {

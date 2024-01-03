@@ -22,3 +22,22 @@ class ObjectTabConfig {
 
   ObjectTabConfig({required this.name, required this.screen});
 }
+
+class ObjectScreenConfig {
+  final VoidCallback deleteFunc;
+  final VoidCallback deleteAllFunc;
+  final VoidCallback addFunc;
+  final VoidCallback modifyFunc;
+  final Future<List<dynamic>> loadFunc;
+  final List data;
+  final int paramsCount;
+
+  ObjectScreenConfig(
+      {required this.deleteFunc,
+      required this.deleteAllFunc,
+      required this.addFunc,
+      required this.modifyFunc,
+      required this.loadFunc,
+      required this.data,
+      required this.paramsCount});
+}
