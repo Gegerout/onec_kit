@@ -14,12 +14,59 @@ class YourStatefulWidget extends StatefulWidget {
 class _YourStatefulWidgetState extends State<YourStatefulWidget> {
   @override
   Widget build(BuildContext context) {
-    return generateObjectScreen(widget.config, () {
-      widget.config.addFunc();
-      setState(() {
+    return Scaffold(
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                const TextField(
+                  decoration: InputDecoration(labelText: 'Event Type Name'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    widget.config.addFunc();
+                    setState(() {
 
-      });
-    });
+                    });
+                  },
+                  child: const Text('Add Event Type'),
+                ),
+              ],
+            ),
+          ),
+          FutureBuilder(
+            future: widget.config.loadFunc,
+            builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const CircularProgressIndicator();
+              } else if (snapshot.hasError) {
+                return Text('Error: ${snapshot.error}');
+              } else {
+                List<dynamic> eventTypes = snapshot.data ?? [];
+                return Expanded(
+                  child: ListView.builder(
+                    itemCount: eventTypes.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        title: Text(eventTypes[index].name),
+                        trailing: IconButton(
+                          icon: const Icon(Icons.delete),
+                          onPressed: () async {
+                            widget.config.deleteFunc();
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                );
+              }
+            },
+          ),
+        ],
+      ),
+    );
   }
 }
 
