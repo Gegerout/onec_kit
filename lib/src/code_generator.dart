@@ -61,9 +61,17 @@ class CodeGenerator {
                 const TextField(
                   decoration: InputDecoration(labelText: 'Event Type Name'),
                 ),
-                ElevatedButton(
-                  onPressed: config.addFunc,
-                  child: const Text('Add Event Type'),
+                Row(
+                  children: [
+                    ElevatedButton(
+                      onPressed: config.addFunc,
+                      child: const Text('Add Event Type'),
+                    ),
+                    ElevatedButton(
+                      onPressed: config.deleteAllFunc,
+                      child: const Text('Delete All'),
+                    ),
+                  ],
                 ),
               ],
             ),
