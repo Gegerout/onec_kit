@@ -58,12 +58,12 @@ class CodeGenerator {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                TextField(
+                const TextField(
                   decoration: InputDecoration(labelText: 'Event Type Name'),
                 ),
                 ElevatedButton(
                   onPressed: config.addFunc,
-                  child: Text('Add Event Type'),
+                  child: const Text('Add Event Type'),
                 ),
               ],
             ),
@@ -72,7 +72,7 @@ class CodeGenerator {
             future: config.loadFunc,
             builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return CircularProgressIndicator();
+                return const CircularProgressIndicator();
               } else if (snapshot.hasError) {
                 return Text('Error: ${snapshot.error}');
               } else {
@@ -84,7 +84,7 @@ class CodeGenerator {
                       return ListTile(
                         title: Text(eventTypes[index].name),
                         trailing: IconButton(
-                          icon: Icon(Icons.delete),
+                          icon: const Icon(Icons.delete),
                           onPressed: () async {
                             config.deleteFunc();
                           },
