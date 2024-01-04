@@ -138,6 +138,11 @@ class CodeGenerator {
                                           config.modifyFunc(e.id);
                                         },
                                         icon: const Icon(Icons.edit)),
+                                    IconButton(
+                                        onPressed: () {
+                                          config.deleteFunc(e.id);
+                                        },
+                                        icon: const Icon(Icons.delete)),
                                   ],
                                 ))
                               ],
