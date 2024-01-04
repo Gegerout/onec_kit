@@ -24,10 +24,10 @@ class ObjectTabConfig {
 }
 
 class ObjectScreenConfig {
-  final void Function(int index) deleteFunc;
+  final void Function(int id) deleteFunc;
   final VoidCallback deleteAllFunc;
   final VoidCallback addFunc;
-  final VoidCallback modifyFunc;
+  final void Function(int id) modifyFunc;
   final Future<List<dynamic>> loadFunc;
   final List data;
   final int paramsCount;

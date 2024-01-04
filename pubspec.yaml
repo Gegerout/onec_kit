@@ -1,6 +1,6 @@
 name: onec_kit
 description: A Flutter package to simplify UI creation like in 1C
-version: 0.0.451
+version: 0.0.46
 homepage: https://github.com/Gegerout/onec_kit
 
 environment:

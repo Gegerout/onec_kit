@@ -91,11 +91,22 @@ class CodeGenerator {
                     itemBuilder: (context, index) {
                       return ListTile(
                         title: Text(eventTypes[index].name),
-                        trailing: IconButton(
-                          icon: const Icon(Icons.delete),
-                          onPressed: () async {
-                            config.deleteFunc(eventTypes[index].id);
-                          },
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            IconButton(
+                              icon: const Icon(Icons.delete),
+                              onPressed: () async {
+                                config.modifyFunc(eventTypes[index].id);
+                              },
+                            ),
+                            IconButton(
+                              icon: const Icon(Icons.delete),
+                              onPressed: () async {
+                                config.deleteFunc(eventTypes[index].id);
+                              },
+                            ),
+                          ],
                         ),
                       );
                     },
