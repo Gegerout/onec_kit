@@ -94,7 +94,7 @@ class CodeGenerator {
                         trailing: IconButton(
                           icon: const Icon(Icons.delete),
                           onPressed: () async {
-                            config.deleteFunc();
+                            config.deleteFunc(index);
                           },
                         ),
                       );

@@ -24,7 +24,7 @@ class ObjectTabConfig {
 }
 
 class ObjectScreenConfig {
-  final VoidCallback deleteFunc;
+  final void Function(int index) deleteFunc;
   final VoidCallback deleteAllFunc;
   final VoidCallback addFunc;
   final VoidCallback modifyFunc;
