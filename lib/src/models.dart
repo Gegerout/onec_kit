@@ -24,19 +24,15 @@ class ObjectTabConfig {
 }
 
 class ObjectScreenConfig {
-  final void Function(int id) deleteFunc;
   final VoidCallback deleteAllFunc;
   final VoidCallback addFunc;
-  final void Function(int id) modifyFunc;
   final Future<List<dynamic>> loadFunc;
   final List dataColumns;
   final List<DataCell> Function(dynamic data) getDataCells;
 
   ObjectScreenConfig(
-      {required this.deleteFunc,
-      required this.deleteAllFunc,
+      {required this.deleteAllFunc,
       required this.addFunc,
-      required this.modifyFunc,
       required this.loadFunc,
       required this.dataColumns,
       required this.getDataCells});

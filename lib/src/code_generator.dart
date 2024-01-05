@@ -5,7 +5,7 @@ import 'models.dart';
 class CodeGenerator {
   static Widget generateHomeScreen(HomeScreenConfig config) {
     final TabController tabController = TabController(
-        length: config.tabs.length, vsync: TestTickerProviderStateMixin());
+        length: config.tabs.length, vsync: TickerProviderMixin());
 
     return Scaffold(
       appBar: AppBar(
@@ -26,7 +26,7 @@ class CodeGenerator {
 
   static Widget generateHomeTab(HomeTabConfig config) {
     final TabController tabController = TabController(
-        length: config.children.length, vsync: TestTickerProviderStateMixin());
+        length: config.children.length, vsync: TickerProviderMixin());
 
     return Scaffold(
       appBar: PreferredSize(
@@ -85,33 +85,6 @@ class CodeGenerator {
                 return Text('Error: ${snapshot.error}');
               } else {
                 List<dynamic> eventTypes = snapshot.data ?? [];
-                // return Expanded(
-                //   child: ListView.builder(
-                //     itemCount: eventTypes.length,
-                //     itemBuilder: (context, index) {
-                //       return ListTile(
-                //         title: Text(eventTypes[index].name),
-                //         trailing: Row(
-                //           mainAxisSize: MainAxisSize.min,
-                //           children: [
-                //             IconButton(
-                //               icon: const Icon(Icons.delete),
-                //               onPressed: () async {
-                //                 config.modifyFunc(eventTypes[index].id);
-                //               },
-                //             ),
-                //             IconButton(
-                //               icon: const Icon(Icons.delete),
-                //               onPressed: () async {
-                //                 config.deleteFunc(eventTypes[index].id);
-                //               },
-                //             ),
-                //           ],
-                //         ),
-                //       );
-                //     },
-                //   ),
-                // );
                 return Expanded(
                     child: ListView(
                   children: [
@@ -122,26 +95,6 @@ class CodeGenerator {
                             .toList(),
                         rows: eventTypes.map((e) {
                           return DataRow(
-                            // cells: [
-                            //   DataCell(Text(e.id.toString())),
-                            //   DataCell(Row(
-                            //     children: [
-                            //       Text(e.name, overflow: TextOverflow.ellipsis),
-                            //       const Spacer(),
-                            //       IconButton(
-                            //           onPressed: () {
-                            //             config.modifyFunc(e.id);
-                            //           },
-                            //           icon: const Icon(Icons.edit)),
-                            //       IconButton(
-                            //           onPressed: () {
-                            //             config.deleteFunc(e.id);
-                            //           },
-                            //           icon: const Icon(Icons.delete)),
-                            //     ],
-                            //   )
-                            //   )
-                            // ],
                             cells: config.getDataCells(e)
                           );
                         }).toList()),
@@ -156,7 +109,7 @@ class CodeGenerator {
   }
 }
 
-class TestTickerProviderStateMixin implements TickerProvider {
+class TickerProviderMixin implements TickerProvider {
   @override
   Ticker createTicker(TickerCallback onTick) => Ticker(onTick);
 }
