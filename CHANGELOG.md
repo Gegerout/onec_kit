@@ -1,3 +1,3 @@
-## 0.0.476
+## 0.0.477
 
 Creation of Home tabs and bug fixes

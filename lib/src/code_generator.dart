@@ -4,8 +4,8 @@ import 'models.dart';
 
 class CodeGenerator {
   static Widget generateHomeScreen(HomeScreenConfig config) {
-    final TabController tabController = TabController(
-        length: config.tabs.length, vsync: TickerProviderMixin());
+    final TabController tabController =
+        TabController(length: config.tabs.length, vsync: TickerProviderMixin());
 
     return Scaffold(
       appBar: AppBar(
@@ -55,23 +55,20 @@ class CodeGenerator {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
+            padding: const EdgeInsets.all(16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const TextField(
-                  decoration: InputDecoration(labelText: 'Event Type Name'),
+                FilledButton(
+                  onPressed: config.addFunc,
+                  child: Text('Добавить ${config.name}'),
                 ),
-                Row(
-                  children: [
-                    ElevatedButton(
-                      onPressed: config.addFunc,
-                      child: const Text('Add Event Type'),
-                    ),
-                    ElevatedButton(
-                      onPressed: config.deleteAllFunc,
-                      child: const Text('Delete All'),
-                    ),
-                  ],
+                TextButton(
+                  onPressed: config.deleteAllFunc,
+                  child: const Text(
+                    'Удалить все',
+                    style: TextStyle(color: Colors.redAccent),
+                  ),
                 ),
               ],
             ),
@@ -82,7 +79,7 @@ class CodeGenerator {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const CircularProgressIndicator();
               } else if (snapshot.hasError) {
-                return Text('Error: ${snapshot.error}');
+                return Text('Ошибка: ${snapshot.error}');
               } else {
                 List<dynamic> eventTypes = snapshot.data ?? [];
                 return Expanded(
@@ -94,9 +91,7 @@ class CodeGenerator {
                             .map((e) => DataColumn(label: Text(e)))
                             .toList(),
                         rows: eventTypes.map((e) {
-                          return DataRow(
-                            cells: config.getDataCells(e)
-                          );
+                          return DataRow(cells: config.getDataCells(e));
                         }).toList()),
                   ],
                 ));
