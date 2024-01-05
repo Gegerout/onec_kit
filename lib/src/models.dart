@@ -29,8 +29,8 @@ class ObjectScreenConfig {
   final VoidCallback addFunc;
   final void Function(int id) modifyFunc;
   final Future<List<dynamic>> loadFunc;
-  final List data;
-  final int paramsCount;
+  final List dataColumns;
+  final List<DataCell> Function(List data) getDataCells;
 
   ObjectScreenConfig(
       {required this.deleteFunc,
@@ -38,6 +38,6 @@ class ObjectScreenConfig {
       required this.addFunc,
       required this.modifyFunc,
       required this.loadFunc,
-      required this.data,
-      required this.paramsCount});
+      required this.dataColumns,
+      required this.getDataCells});
 }

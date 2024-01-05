@@ -112,41 +112,38 @@ class CodeGenerator {
                 //     },
                 //   ),
                 // );
-                return Expanded(child: ListView(
+                return Expanded(
+                    child: ListView(
                   children: [
                     DataTable(
                         showCheckboxColumn: false,
-                        columns: const [
-                          DataColumn(
-                              label: Expanded(child: Text("Номер")),
-                              numeric: true),
-                          DataColumn(
-                              label: Expanded(child: Text("Наименование")))
-                        ],
-                        rows:
-                        eventTypes.map((e) {
+                        columns: config.dataColumns
+                            .map((e) => DataColumn(label: Text(e)))
+                            .toList(),
+                        rows: eventTypes.map((e) {
                           return DataRow(
-                              cells: [
-                                DataCell(Text(e.id.toString())),
-                                DataCell(Row(
-                                  children: [
-                                    Text(e.name,
-                                        overflow: TextOverflow.ellipsis),
-                                    const Spacer(),
-                                    IconButton(
-                                        onPressed: () {
-                                          config.modifyFunc(e.id);
-                                        },
-                                        icon: const Icon(Icons.edit)),
-                                    IconButton(
-                                        onPressed: () {
-                                          config.deleteFunc(e.id);
-                                        },
-                                        icon: const Icon(Icons.delete)),
-                                  ],
-                                ))
-                              ],
-                              );
+                            // cells: [
+                            //   DataCell(Text(e.id.toString())),
+                            //   DataCell(Row(
+                            //     children: [
+                            //       Text(e.name, overflow: TextOverflow.ellipsis),
+                            //       const Spacer(),
+                            //       IconButton(
+                            //           onPressed: () {
+                            //             config.modifyFunc(e.id);
+                            //           },
+                            //           icon: const Icon(Icons.edit)),
+                            //       IconButton(
+                            //           onPressed: () {
+                            //             config.deleteFunc(e.id);
+                            //           },
+                            //           icon: const Icon(Icons.delete)),
+                            //     ],
+                            //   )
+                            //   )
+                            // ],
+                            cells: config.getDataCells(eventTypes)
+                          );
                         }).toList()),
                   ],
                 ));
