@@ -142,7 +142,7 @@ class CodeGenerator {
                             //   )
                             //   )
                             // ],
-                            cells: config.getDataCells(eventTypes)
+                            cells: config.getDataCells(e)
                           );
                         }).toList()),
                   ],

@@ -30,7 +30,7 @@ class ObjectScreenConfig {
   final void Function(int id) modifyFunc;
   final Future<List<dynamic>> loadFunc;
   final List dataColumns;
-  final List<DataCell> Function(List data) getDataCells;
+  final List<DataCell> Function(dynamic data) getDataCells;
 
   ObjectScreenConfig(
       {required this.deleteFunc,
